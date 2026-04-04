@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Frequência Mental Poderosa - O Despertar do Rugido</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET e correção de movimentação horizontal (mobile) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #D6CFA1;
+            color: #1F1F1F;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        section {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        @media (min-width: 768px) {
+            section {
+                padding-top: 8rem;
+                padding-bottom: 8rem;
+            }
+        }
+
+        .text-humanized {
+            line-height: 1.8;
+            letter-spacing: -0.01em;
+        }
+
+        /* IMAGE BOXES REFORMULADAS: imagens MAIORES e sem compressão visual */
+        .image-box {
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+            background-color: rgba(0, 0, 0, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Removemos padding excessivo para a imagem ocupar quase toda a janela */
+            padding: 0.25rem;
+            transition: all 0.2s ease;
+        }
+
+        /* Garantia que a imagem preencha o máximo do espaço disponível, sem distorção */
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            /* Pequeno refinamento para evitar micro-movimentos em mobile */
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        /* Hover apenas para desktop, sem causar deslocamento horizontal em mobile */
+        @media (hover: hover) and (pointer: fine) {
+            .image-box:hover img {
+                transform: scale(1.02);
+            }
+        }
+
+        /* Ajuste para alturas consistentes e responsivas: imagens sempre proporcionais */
+        .image-box-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Prevenção de qualquer overflow causado por elementos rotacionados ou animações */
+        .no-movement {
+            transform: translateZ(0);
+            will-change: auto;
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .step-number {
+            font-size: 5rem;
+            opacity: 0.12;
+            font-family: 'Playfair Display', serif;
+            position: absolute;
+            top: -1.8rem;
+            left: -0.8rem;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        /* Botões e elementos interativos sem repuxo */
+        button, a {
+            transition: all 0.25s ease;
+        }
+
+        /* Correção de rolagem suave e sem tremores */
+        [data-scroll] {
+            scroll-margin-top: 2rem;
+        }
+
+        /* Mobile: evitar que imagens fiquem minúsculas, garantindo altura dinâmica */
+        @media (max-width: 768px) {
+            .image-box {
+                min-height: 320px;
+                max-height: 480px;
+            }
+            .image-box img {
+                object-fit: contain;
+                width: 100%;
+                height: 100%;
+            }
+            /* Remove efeitos de hover que poderiam gerar movimento residual */
+            .image-box:hover img {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased no-movement">
+
+    <!-- 1. HERO SECTION - Leão e Despertar -->
+    <header class="min-h-screen flex items-center px-5 md:px-6 py-12">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7">
+                <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-90">Frequência.</div>
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
+                    O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
+                </h1>
+                <p class="text-lg md:text-2xl text-humanized opacity-85 max-w-lg">
+                    A desmotivação não é ausência de força; é uma frequência desalinhada. Recupere a sua soberania mental hoje.
+                </p>
+                <div class="pt-4">
+                    <a href="#golem" class="inline-block bg-black text-white px-10 md:px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
+                        Identificar meu bloqueio
+                    </a>
+                </div>
+            </div>
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full">
+                <img src="./hero-leao.jpg" alt="Leão majestoso rugindo em liberdade - força interior" class="drop-shadow-2xl">
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. EFEITO GOLEM - Guia Gratuito -->
+    <section id="golem" class="px-5 md:px-6 bg-[#2D2D2D] text-[#D6CFA1]" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2">
+                <img src="./ebook-golem.png" alt="Capa do E-book Efeito Golem - O Peso Invisível">
+            </div>
+            <div class="space-y-7 md:order-2 order-1">
+                <span class="glass-tag px-5 py-1.5 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full inline-block">Recurso Gratuito</span>
+                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">O Peso Invisível: <br><span class="italic">Efeito Golem</span>.</h2>
+                <p class="text-base md:text-xl text-humanized opacity-85">
+                    Descubra como as expectativas alheias esculpiram a sua estagnação. Este guia é o primeiro passo para quebrar o feitiço da mediocridade.
+                </p>
+                <a href="./glm.pdf" download class="inline-flex items-center gap-4 px-8 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl w-fit">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Baixar Guia Gratuito (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. A ORIGEM DO CONFLITO (estagnação mental) -->
+    <section class="px-5 md:px-6 bg-[#E5E0C2]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7">
+                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">Porquê se sente <br><span class="italic underline decoration-2">estagnado?</span></h2>
+                <p class="text-lg md:text-xl text-humanized opacity-80">
+                    Passamos anos a absorver ruído. O ruído do medo, da dúvida e das comparações. Esse ruído cria uma névoa que impede o leão de ver a savana. 
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-75">
+                    Não se trata de falta de ferramentas. Trata-se de uma bateria interna que está a descarregar em ciclos repetitivos de pensamento negativo.
+                </p>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full">
+                <img src="./origem-conflito.jpg" alt="Representação do conflito mental e da névoa interior">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FILOSOFIA E CONSCIÊNCIA (meditação e introspecção) -->
+    <section id="filosofia" class="px-5 md:px-6" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full md:order-1 order-2">
+                <img src="./meditacao.png" alt="Pessoa em meditação consciente - introspecção profunda">
+            </div>
+            <div class="space-y-7 md:order-2 order-1">
+                <span class="text-xs uppercase tracking-[0.3em] opacity-60 block font-semibold">Consciência</span>
+                <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
+                <p class="text-xl md:text-2xl text-humanized text-gray-800 italic font-medium">
+                    "O desânimo é o grito de uma alma que possui um potencial maior do que a rotina que a aprisiona."
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-80">
+                    A meditação e a introspecção não são fugas da realidade, são os treinos necessários para dominar o território da própria mente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. O MÉTODO DOS 3 PILARES (Trindade do Despertar) -->
+    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24">A Trindade do Despertar</h2>
+            <div class="grid md:grid-cols-3 gap-12 md:gap-16">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                    <span class="step-number">01</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Purificação</h3>
+                    <p class="opacity-80 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
+                </div>
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                    <span class="step-number">02</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Sintonização</h3>
+                    <p class="opacity-80 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
+                </div>
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                    <span class="step-number">03</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Manifestação</h3>
+                    <p class="opacity-80 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. O RUGIDO INTERNO (Transmutação e poder) -->
+    <section class="px-5 md:px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7">
+                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">O Momento da <br><span class="italic font-normal">Transmutação</span>.</h2>
+                <p class="text-lg md:text-xl text-humanized opacity-85">
+                    Quando a mente se alinha com o propósito, o medo desaparece. Não porque os problemas sumiram, mas porque você se tornou maior do que eles.
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-75">
+                    Este não é apenas um curso. É o resgate de uma autoridade que você sempre possuiu, mas que lhe ensinaram a esquecer.
+                </p>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full">
+                <img src="./foco-absoluto.png" alt="Foco absoluto e poder interior - transmutação pessoal">
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CHECKOUT FINAL - OBRA PRINCIPAL -->
+    <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="relative md:order-1 order-2 flex justify-center">
+                <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl">
+                    <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa - O Despertar do Rugido Interno">
+                </div>
+                <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-black z-10">
+                    <span class="text-3xl md:text-4xl font-bold serif leading-none">7</span>
+                    <span class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
+                </div>
+            </div>
+            
+            <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1">
+                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
+                <h3 class="text-xl md:text-2xl serif italic opacity-80 -mt-4">O Despertar do Rugido Interno</h3>
+                <p class="text-base md:text-xl text-humanized opacity-80">
+                    O mapa definitivo para a sua transmutação pessoal. Saia da apatia e desperte a autoridade natural que sempre esteve aí.
+                </p>
+                <div class="space-y-6">
+                    <button class="w-full py-6 md:py-8 bg-[#D6CFA1] text-black rounded-full font-bold text-lg md:text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">
+                        Despertar Meu Potencial
+                    </button>
+                    <p class="text-center text-[9px] md:text-[10px] opacity-50 uppercase tracking-[0.3em]">
+                        Risco Zero • Acesso Vitalício • Purificação Mental
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 md:py-20 px-6 text-center opacity-40">
+        <div class="max-w-7xl mx-auto text-[10px] md:text-xs uppercase tracking-[0.4em]">
+            Frequência © 2026 • O despertar é uma escolha.
+        </div>
+    </footer>
+
+    <!-- Script para prevenir qualquer arrasto indesejado ou scroll lateral em elementos específicos -->
+    <script>
+        (function() {
+            // Garantir que não haja scroll horizontal em qualquer dispositivo
+            const html = document.documentElement;
+            const body = document.body;
+            
+            function fixOverflow() {
+                const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+                if (maxWidth > window.innerWidth) {
+                    document.body.style.overflowX = 'hidden';
+                    document.documentElement.style.overflowX = 'hidden';
+                } else {
+                    document.body.style.overflowX = 'hidden';
+                    document.documentElement.style.overflowX = 'hidden';
+                }
+            }
+            
+            // Corrigir qualquer movimento residual ao redimensionar ou tocar
+            window.addEventListener('resize', fixOverflow);
+            window.addEventListener('load', fixOverflow);
+            fixOverflow();
+            
+            // Pequeno ajuste para links âncora suave sem trepidação em mobile
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === "#" || targetId === "") return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 20;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Prevenir qualquer movimento de layout causado por transformações em imagens em mobile
+            if ('ontouchstart' in window) {
+                const allImageBoxes = document.querySelectorAll('.image-box');
+                allImageBoxes.forEach(box => {
+                    box.style.transform = 'translateZ(0)';
+                    box.style.webkitTransform = 'translateZ(0)';
+                });
+            }
+        })();
+    </script>
+</body>
+                  </html>
