@@ -73,204 +73,222 @@
             font-weight: 700;
             font-family: 'Playfair Display', serif;
             position: absolute;
-            top: -0.8rem;
-            left: 1rem;
-            opacity: 0.12;
+            top: -0.75rem;
+            left: 1.25rem;
             line-height: 1;
+            opacity: 0.25;
             pointer-events: none;
-            color: currentColor;
+            z-index: 0;
         }
-        /* Em mobile, manter ajuste fino */
-        @media (max-width: 768px) {
+        @media (min-width: 768px) {
             .step-number {
-                font-size: 3rem;
-                top: -0.5rem;
-                left: 0.75rem;
+                font-size: 5rem;
+                top: -1rem;
+                left: 1.5rem;
             }
         }
 
-        /* Animações e movimentos */
+        /* EFEITO FADE-UP */
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* MOVIMENTO HORIZONTAL */
         .horizontal-move {
-            transition: transform 0.4s ease-out;
-            will-change: transform;
-        }
-        .parallax-img {
             transition: transform 0.1s linear;
             will-change: transform;
         }
-        .floating-element {
-            animation: floatHorizontal 6s ease-in-out infinite;
+        @media (max-width: 768px) {
+            .horizontal-move {
+                transform: translateX(0) !important;
+            }
         }
-        @keyframes floatHorizontal {
-            0% { transform: translateX(0px) translateY(0px); }
-            50% { transform: translateX(12px) translateY(-8px); }
-            100% { transform: translateX(0px) translateY(0px); }
+
+        /* BOTÃO CTA */
+        .btn-primary {
+            background: linear-gradient(135deg, #1F1F1F 0%, #2D2D2D 100%);
+            transition: all 0.3s ease;
         }
-        .stagger-card {
-            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.4, 1);
-        }
-        .no-x-overflow {
-            overflow-x: hidden;
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2D2D2D 0%, #1F1F1F 100%);
+            transform: scale(1.02);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.3);
         }
     </style>
 </head>
-<body class="antialiased no-x-overflow">
+<body>
 
-    <!-- 1. HERO SECTION -->
-    <header class="min-h-screen flex items-center px-5 md:px-6 py-12 relative overflow-hidden">
-        <div class="absolute top-20 right-5 w-40 h-40 bg-white/10 rounded-full blur-3xl floating-element pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7 fade-up">
-                <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-90">Frequência.</div>
-                <h1 class="text-5xl sm:text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
-                    O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
+    <!-- HERO -->
+    <section class="relative px-6 pt-24 pb-16 md:pt-36 md:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="text-center max-w-4xl mx-auto fade-up">
+                <div class="inline-block mb-6 px-4 py-1.5 rounded-full glass-tag text-[11px] font-semibold tracking-[0.2em] uppercase backdrop-blur-sm">
+                    ⚡ DESPERTA A TUA FREQUÊNCIA
+                </div>
+                <h1 class="serif text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.15] md:leading-[1.1] text-[#1F1F1F]">
+                    O Rugido que<br>
+                    <span class="italic font-medium">vem de dentro</span>
                 </h1>
-                <p class="text-lg md:text-2xl text-humanized opacity-85 max-w-lg">
-                    A desmotivação não é ausência de força; é uma frequência desalinhada. Recupere a sua soberania mental hoje.
+                <p class="text-lg md:text-2xl text-[#2D2D2D]/80 mt-8 max-w-2xl mx-auto text-humanized">
+                    Reconecta-te com a tua força primordial. Um método mental imersivo para quebrar padrões e ativar o guerreiro que sempre foste.
                 </p>
-                <div class="pt-4">
-                    <a href="#golem" class="inline-block bg-black text-white px-10 md:px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
-                        Identificar meu bloqueio
+                <div class="flex flex-col sm:flex-row gap-5 justify-center mt-12">
+                    <a href="#jornada" class="btn-primary text-white px-8 py-4 rounded-full text-sm font-semibold tracking-wide shadow-xl transition-all duration-300">⚔️ INICIAR JORNADA</a>
+                </div>
+            </div>
+        </div>
+        <!-- elemento decorativo -->
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-[#D6CFA1] to-transparent pointer-events-none z-0"></div>
+    </section>
+
+    <!-- INTRO VISUAL -->
+    <div class="px-6 pb-8 md:pb-12 -mt-8 md:-mt-12 relative z-20">
+        <div class="max-w-6xl mx-auto image-box fade-up" style="border-radius: 2rem;">
+            <img class="parallax-img w-full h-full object-cover" src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Leão rugindo força interior">
+        </div>
+    </div>
+
+    <!-- JORNADA (4 PASSOS) -->
+    <section id="jornada" class="px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24 fade-up">
+                <span class="text-xs font-bold tracking-[0.3em] uppercase bg-black/5 px-4 py-1.5 rounded-full">4 ESTÁGIOS</span>
+                <h2 class="serif text-4xl md:text-5xl font-bold mt-5 leading-tight">A frequência do guerreiro</h2>
+                <div class="w-20 h-0.5 bg-black/20 mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+                <!-- Passo 1 -->
+                <div class="relative pl-8 md:pl-12 fade-up horizontal-move" data-horizontal="-8">
+                    <div class="step-number">01</div>
+                    <h3 class="serif text-2xl md:text-3xl font-bold mb-4">Silêncio Ativo</h3>
+                    <p class="text-[#1F1F1F]/80 leading-relaxed text-humanized">
+                        Remove o ruído externo. Aprende a escutar a tua respiração e os sinais que o corpo envia. O primeiro rugido nasce do silêncio.
+                    </p>
+                </div>
+                <!-- Passo 2 -->
+                <div class="relative pl-8 md:pl-12 fade-up horizontal-move" data-horizontal="6">
+                    <div class="step-number">02</div>
+                    <h3 class="serif text-2xl md:text-3xl font-bold mb-4">Ressignificação</h3>
+                    <p class="text-[#1F1F1F]/80 leading-relaxed text-humanized">
+                        Transforma crenças limitantes em alavancas de poder. Cada medo é um convite para te expandires e ocupares o teu lugar.
+                    </p>
+                </div>
+                <!-- Passo 3 -->
+                <div class="relative pl-8 md:pl-12 fade-up horizontal-move" data-horizontal="-4">
+                    <div class="step-number">03</div>
+                    <h3 class="serif text-2xl md:text-3xl font-bold mb-4">Ancoragem Corporal</h3>
+                    <p class="text-[#1F1F1F]/80 leading-relaxed text-humanized">
+                        A postura certa gera a química certa. Activa o teu sistema nervoso para estados de presença e confiança inabalável.
+                    </p>
+                </div>
+                <!-- Passo 4 -->
+                <div class="relative pl-8 md:pl-12 fade-up horizontal-move" data-horizontal="10">
+                    <div class="step-number">04</div>
+                    <h3 class="serif text-2xl md:text-3xl font-bold mb-4">O Glossário Guerreiro</h3>
+                    <p class="text-[#1F1F1F]/80 leading-relaxed text-humanized mb-5">
+                        Palavras que curam, frases que empoderam. Um sistema linguístico de alto desempenho mental para reprogramar o diálogo interno.
+                    </p>
+                    <!-- PDF modificado: abre em nova aba para leitura -->
+                    <a href="glm.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-semibold tracking-wide transition-all duration-300 border-b border-current pb-1 hover:gap-3">
+                        📖 Manual do Guerreiro Mental (PDF)
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
                     </a>
                 </div>
             </div>
-            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full fade-up" style="transition-delay: 0.15s;">
-                <img src="./hero-leao.jpg" alt="Leão majestoso" class="parallax-img">
-            </div>
-        </div>
-    </header>
-
-    <!-- 2. EFEITO GOLEM -->
-    <section id="golem" class="px-5 md:px-6 bg-[#2D2D2D] text-[#D6CFA1]" data-scroll>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2 fade-up">
-                <img src="./ebook-golem.png" alt="E-book Efeito Golem" class="parallax-img">
-            </div>
-            <div class="space-y-7 md:order-2 order-1 fade-up">
-                <span class="glass-tag px-5 py-1.5 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full inline-block">Recurso Gratuito</span>
-                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">O Peso Invisível: <br><span class="italic">Efeito Golem</span>.</h2>
-                <p class="text-base md:text-xl text-humanized opacity-85">
-                    Descubra como as expectativas alheias esculpiram a sua estagnação. Este guia é o primeiro passo para quebrar o feitiço da mediocridade.
-                </p>
-                <a href="./glm.pdf" download class="inline-flex items-center gap-4 px-8 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl w-fit">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Baixar Guia Gratuito (PDF)
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- 3. PORQUÊ SE SENTE ESTAGNADO? (NOVO TEXTO) -->
-    <section class="px-5 md:px-6 bg-[#E5E0C2]">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7 fade-up">
-                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">Está cansado de sentir-se desmotivado  <br><span class="italic underline decoration-2">e sem propósito na vida?</span></h2>
-                <div class="text-base md:text-lg text-humanized opacity-90 space-y-4">
-                    <p> Você não está sozinho. Muitas pessoas lutam com esses sentimentos todos os dias, mas a boa notícia é que você não precisa mais enfrentá-los sozinho.</p>
-                    <p>Com o livro <span class="font-semibold">"Frequência Mental Poderosa"</span>, você finalmente terá as ferramentas necessárias para superar esse ciclo de desmotivação e encontrar um propósito significativo em sua vida.</p>
-                    <p>Ao mergulhar nas páginas deste livro, você descobrirá estratégias comprovadas e práticas para reprogramar sua mente, cultivar uma mentalidade positiva e desenvolver hábitos que o levarão ao sucesso duradouro.</p>
-                </div>
-            </div>
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
-                <img src="./origem-conflito.jpg" alt="Superação da desmotivação" class="parallax-img">
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. FILOSOFIA E CONSCIÊNCIA -->
-    <section id="filosofia" class="px-5 md:px-6" data-scroll>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full md:order-1 order-2 fade-up">
-                <img src="./meditacao.png" alt="Meditação consciente" class="parallax-img">
-            </div>
-            <div class="space-y-7 md:order-2 order-1 fade-up">
-                <span class="text-xs uppercase tracking-[0.3em] opacity-60 block font-semibold">Consciência</span>
-                <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
-                <p class="text-xl md:text-2xl text-humanized text-gray-700 italic font-medium">
-                    "O desânimo é o grito de uma alma que possui um potencial maior do que a rotina que a aprisiona."
-                </p>
-                <p class="text-base md:text-lg text-humanized opacity-80">
-                    Imagine acordar todas as manhãs com uma sensação renovada de energia e entusiasmo. Imagine enfrentar cada dia com uma clareza de propósito que o impulsiona em direção aos seus sonhos mais profundos. Isso não é apenas um sonho distante - é uma realidade ao seu alcance.
-                </p>
-                <p>Deixe para trás a sensação de desânimo e falta de direção. Em vez disso, embarque em uma jornada de autodescoberta e crescimento pessoal que o capacitará a alcançar todo o seu potencial.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. MÉTODO DOS 3 PILARES (números subidos) -->
-    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1] overflow-hidden">
+    <!-- CITAÇÃO GUERREIRA COM IMAGEM -->
+    <section class="px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24 fade-up">A Trindade do Despertar</h2>
-            <div class="grid md:grid-cols-3 gap-12 md:gap-16">
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="-12px" style="transition-delay: 0.1s;">
-                    <span class="step-number">01</span>
-                    <h3 class="text-2xl md:text-3xl serif mb-5">Purificação</h3>
-                    <p class="opacity-80 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1 fade-up">
+                    <span class="text-xs font-bold tracking-[0.3em] uppercase bg-black/5 px-4 py-1.5 rounded-full inline-block mb-6">⚔️ SABEDORIA INTERIOR</span>
+                    <blockquote class="serif text-3xl md:text-4xl font-medium italic leading-[1.35] tracking-tight">
+                        “Não é o rugido que assusta a presa,<br>é a certeza de quem o solta.”
+                    </blockquote>
+                    <p class="mt-8 text-[#1F1F1F]/70 text-humanized border-l-4 border-black/20 pl-6">
+                        O guerreiro mental não nega as sombras — ele caminha com elas. Cada pensamento treinado torna-se um aliado feroz.
+                    </p>
                 </div>
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="0px" style="transition-delay: 0.2s;">
-                    <span class="step-number">02</span>
-                    <h3 class="text-2xl md:text-3xl serif mb-5">Sintonização</h3>
-                    <p class="opacity-80 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
-                </div>
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="12px" style="transition-delay: 0.3s;">
-                    <span class="step-number">03</span>
-                    <h3 class="text-2xl md:text-3xl serif mb-5">Manifestação</h3>
-                    <p class="opacity-80 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
+                <div class="order-1 md:order-2 image-box fade-up" style="aspect-ratio: 4/3;">
+                    <img class="parallax-img w-full h-full object-cover" src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Guerreiro silhueta montanha">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. RUGIDO INTERNO -->
-    <section class="px-5 md:px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7 fade-up">
-                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">O Momento da <br><span class="italic font-normal">Transmutação</span>.</h2>
-                <p class="text-lg md:text-xl text-humanized opacity-85">
-                    Quando a mente se alinha com o propósito, o medo desaparece. Não porque os problemas sumiram, mas porque você se tornou maior do que eles.
-                </p>
-                <p class="text-base md:text-lg text-humanized opacity-75">
-                    Este não é apenas um e-book. É o resgate de uma autoridade que você sempre possuiu, mas que lhe ensinaram a esquecer, e que apartir de agora, como diziam os gregos será rememorada.
-                </p>
+    <!-- SEÇÃO DE PRINCÍPIOS / 3 PILARES -->
+    <section class="px-6 bg-[#C9C295]/40">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16 fade-up">
+                <span class="text-xs font-bold tracking-[0.3em] uppercase bg-black/5 px-4 py-1.5 rounded-full">TRILOGIA MENTAL</span>
+                <h2 class="serif text-4xl md:text-5xl font-bold mt-5">Os três pilares da alta frequência</h2>
             </div>
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
-                <img src="./foco-absoluto.png" alt="Foco e poder" class="parallax-img">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="bg-white/30 backdrop-blur-sm rounded-2xl p-8 text-center fade-up shadow-sm">
+                    <div class="text-5xl mb-4">🧠</div>
+                    <h3 class="text-xl font-bold serif">Neuroplasticidade</h3>
+                    <p class="text-sm text-[#1F1F1F]/70 mt-3 leading-relaxed">Reconfigurar o cérebro através de estímulos repetidos e emoção de alta vibração.</p>
+                </div>
+                <div class="bg-white/30 backdrop-blur-sm rounded-2xl p-8 text-center fade-up shadow-sm">
+                    <div class="text-5xl mb-4">🔥</div>
+                    <h3 class="text-xl font-bold serif">Frequência Alfa</h3>
+                    <p class="text-sm text-[#1F1F1F]/70 mt-3 leading-relaxed">Acesso ao estado de fluxo, criatividade e relaxamento profundo com ondas cerebrais treinadas.</p>
+                </div>
+                <div class="bg-white/30 backdrop-blur-sm rounded-2xl p-8 text-center fade-up shadow-sm">
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold serif">Rugido Autêntico</h3>
+                    <p class="text-sm text-[#1F1F1F]/70 mt-3 leading-relaxed">Acção sem hesitação, comunicação clara e propósito inabalável.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 7. CHECKOUT FINAL -->
-    <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="relative md:order-1 order-2 flex justify-center fade-up">
-                <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl floating-element" style="animation-duration: 8s;">
-                    <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa">
+    <!-- ÁUDIO / FREQUÊNCIA SONORA (DEMO) -->
+    <section class="px-6">
+        <div class="max-w-4xl mx-auto text-center fade-up">
+            <div class="bg-[#1F1F1F] text-white rounded-3xl p-8 md:p-12 shadow-2xl">
+                <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-white/60">🎧 FREQUÊNCIA ACTIVA</span>
+                <h2 class="serif text-3xl md:text-4xl font-bold mt-4">Sintoniza o rugido</h2>
+                <p class="text-white/70 text-humanized mt-3 max-w-lg mx-auto">Uma demonstração da paisagem sonora que acompanha o método completo.</p>
+                <div class="mt-8 flex justify-center">
+                    <audio controls class="w-full max-w-md rounded-full bg-black/30">
+                        <source src="#" type="audio/mpeg">
+                        O seu browser não suporta áudio.
+                    </audio>
                 </div>
-                <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-black z-10">
-                    <span class="text-3xl md:text-4xl font-bold serif leading-none">7</span>
-                    <span class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
-                </div>
+                <p class="text-[10px] text-white/40 mt-6">Prévia exclusiva • Frequência 111Hz + batidas binaurais</p>
             </div>
-            <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1 fade-up">
-                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
-                <h3 class="text-xl md:text-2xl serif italic opacity-80 -mt-4">O Despertar do Rugido Interior</h3>
-                <p class="text-base md:text-xl text-humanized opacity-80">
-                    O mapa definitivo para a sua transformação pessoal. Saia da apatia e desperte a autoridade natural que sempre esteve aí.
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="px-6 text-center">
+        <div class="max-w-4xl mx-auto fade-up">
+            <div class="border-2 border-[#1F1F1F]/20 rounded-3xl p-10 md:p-16 bg-[#D6CFA1]">
+                <h2 class="serif text-4xl md:text-5xl font-bold">Chegou o momento.<br>Ruge.</h2>
+                <div class="w-16 h-px bg-black/30 mx-auto my-6"></div>
+                <p class="text-lg text-[#1F1F1F]/80 max-w-xl mx-auto text-humanized">
+                    A Frequência Mental Poderosa não é um curso — é um despertador para a tua melhor versão.
                 </p>
-                <div class="space-y-6">
-                    <button class="w-full py-6 md:py-8 bg-[#D6CFA1] text-black rounded-full font-bold text-lg md:text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">
-                        Despertar Meu Potencial
-                    </button>
-                    <p class="text-center text-[9px] md:text-[10px] opacity-50 uppercase tracking-[0.3em]">
+                <div class="mt-10">
+                    <a href="#" class="btn-primary inline-flex items-center gap-2 text-white px-10 py-4 rounded-full text-sm font-bold tracking-wide shadow-xl transition-all duration-300">
+                        🦁 QUERO O MEU ACESSO
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                    </a>
+                    <p class="text-center text-[9px] md:text-[10px] opacity-50 uppercase tracking-[0.3em] mt-6">
                         Risco Zero • Acesso Vitalício • Purificação Mental
                     </p>
                 </div>
