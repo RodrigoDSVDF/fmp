@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Frequência Mental Poderosa - Despertar do Rugido | Movimentos</title>
+    <title>Frequência Mental Poderosa - Despertar do Rugido | Imagens Perfeitas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <style>
@@ -32,30 +32,32 @@
         }
         .text-humanized { line-height: 1.8; letter-spacing: -0.01em; }
 
-        /* IMAGE BOXES (imagens grandes) */
+        /* IMAGE BOXES: agora as imagens cobrem 100% da área sem espaços */
         .image-box {
             overflow: hidden;
             border-radius: 2rem;
             box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
-            background-color: rgba(0, 0, 0, 0.02);
+            background-color: #1a1a1a; /* fundo neutro para transição, mas a imagem cobre tudo */
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.25rem;
+            padding: 0; /* sem padding interno para não criar bordas */
             transition: all 0.2s ease;
             transform: translateZ(0);
         }
         .image-box img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover; /* IMPERATIVO: preenche toda a caixa, cortando o excedente mas sem distorcer */
             display: block;
             transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
             backface-visibility: hidden;
         }
+        /* Hover apenas desktop */
         @media (hover: hover) and (pointer: fine) {
-            .image-box:hover img { transform: scale(1.02); }
+            .image-box:hover img { transform: scale(1.03); }
         }
+        /* Mobile: altura mais flexível, sem hover */
         @media (max-width: 768px) {
             .image-box { min-height: 280px; max-height: 440px; }
             .image-box:hover img { transform: none; }
@@ -78,7 +80,6 @@
         }
 
         /* ========== ANIMAÇÕES E MOVIMENTOS ========== */
-        /* Elementos que vão entrar com fade + translateY (vertical) */
         .fade-up {
             opacity: 0;
             transform: translateY(40px);
@@ -88,20 +89,14 @@
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Movimento horizontal sutil para cards (ao rolar, eles se movem lateralmente) */
         .horizontal-move {
             transition: transform 0.4s ease-out;
             will-change: transform;
         }
-        
-        /* Parallax vertical para imagens dentro das .image-box (efeito mais suave) */
         .parallax-img {
             transition: transform 0.1s linear;
             will-change: transform;
         }
-
-        /* Elemento flutuante no hero (movimento contínuo horizontal/vertical suave) */
         .floating-element {
             animation: floatHorizontal 6s ease-in-out infinite;
         }
@@ -110,13 +105,9 @@
             50% { transform: translateX(12px) translateY(-8px); }
             100% { transform: translateX(0px) translateY(0px); }
         }
-        
-        /* Pequeno movimento nos cards ao fazer scroll (horizontal stagger) */
         .stagger-card {
             transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.4, 1);
         }
-        
-        /* Prevenção de qualquer overflow horizontal por animações */
         .no-x-overflow {
             overflow-x: hidden;
         }
@@ -124,7 +115,7 @@
 </head>
 <body class="antialiased no-x-overflow">
 
-    <!-- 1. HERO SECTION com elemento flutuante e parallax de imagem -->
+    <!-- 1. HERO SECTION -->
     <header class="min-h-screen flex items-center px-5 md:px-6 py-12 relative overflow-hidden">
         <div class="absolute top-20 right-5 w-40 h-40 bg-white/10 rounded-full blur-3xl floating-element pointer-events-none"></div>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -205,7 +196,7 @@
         </div>
     </section>
 
-    <!-- 5. MÉTODO DOS 3 PILARES (movimento horizontal nos cards) -->
+    <!-- 5. MÉTODO DOS 3 PILARES -->
     <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1] overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24 fade-up">A Trindade do Despertar</h2>
@@ -247,7 +238,7 @@
         </div>
     </section>
 
-    <!-- 7. CHECKOUT FINAL com efeito de movimento hover/scroll -->
+    <!-- 7. CHECKOUT FINAL -->
     <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="relative md:order-1 order-2 flex justify-center fade-up">
@@ -285,7 +276,7 @@
 
     <script>
         (function() {
-            // 1. PREVENIR SCROLL HORIZONTAL
+            // 1. Prevenir scroll horizontal
             function fixHorizontalOverflow() {
                 document.body.style.overflowX = 'hidden';
                 document.documentElement.style.overflowX = 'hidden';
@@ -293,7 +284,7 @@
             window.addEventListener('resize', fixHorizontalOverflow);
             fixHorizontalOverflow();
 
-            // 2. ANIMAÇÃO DE ENTRADA (FADE-UP) usando Intersection Observer
+            // 2. Intersection Observer para fade-up
             const fadeElements = document.querySelectorAll('.fade-up');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -305,7 +296,7 @@
             }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
             fadeElements.forEach(el => observer.observe(el));
 
-            // 3. MOVIMENTO HORIZONTAL NOS CARDS (ao rolar, movem-se lateralmente)
+            // 3. Movimento horizontal nos cards (scroll)
             const horizontalCards = document.querySelectorAll('.horizontal-move');
             if (horizontalCards.length) {
                 const handleScrollHorizontal = () => {
@@ -316,12 +307,10 @@
                         const isVisible = rect.top < viewportHeight - 100 && rect.bottom > 100;
                         if (isVisible) {
                             const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
-                            // movimento horizontal entre -15px e +15px baseado no scroll + progressão natural
                             let moveX = 0;
                             if (card.dataset.horizontal) {
                                 moveX = parseFloat(card.dataset.horizontal) * progress;
                             } else {
-                                // movimento padrão para cards sem data: oscilação suave baseada no índice
                                 const sign = idx === 0 ? -1 : (idx === 2 ? 1 : 0);
                                 moveX = sign * 12 * progress;
                             }
@@ -336,30 +325,25 @@
                 handleScrollHorizontal();
             }
 
-            // 4. PARALLAX VERTICAL NAS IMAGENS (movimento vertical suave ao rolar)
+            // 4. Parallax vertical suave nas imagens
             const parallaxImages = document.querySelectorAll('.parallax-img');
             if (parallaxImages.length) {
                 window.addEventListener('scroll', () => {
-                    const scrolled = window.scrollY;
                     parallaxImages.forEach(img => {
-                        // Movimento suave entre -20px e +20px dependendo da posição da imagem
                         const parentBox = img.closest('.image-box');
                         if (parentBox) {
                             const rect = parentBox.getBoundingClientRect();
                             const viewportCenter = window.innerHeight / 2;
                             const elementCenter = rect.top + rect.height / 2;
-                            const distanceFromCenter = (elementCenter - viewportCenter) / 30;
-                            const moveY = Math.min(25, Math.max(-25, distanceFromCenter * 0.5));
-                            img.style.transform = `translateY(${moveY * 0.4}px)`;
-                        } else {
-                            const moveY = scrolled * 0.05;
-                            img.style.transform = `translateY(${moveY * 0.2}px)`;
+                            const distanceFromCenter = (elementCenter - viewportCenter) / 35;
+                            const moveY = Math.min(20, Math.max(-20, distanceFromCenter * 0.6));
+                            img.style.transform = `translateY(${moveY}px)`;
                         }
                     });
                 });
             }
 
-            // 5. LINK SUAVE (âncora)
+            // 5. Âncoras suaves
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
@@ -373,19 +357,16 @@
                 });
             });
 
-            // 6. Para mobile: reduzir intensidade de movimentos e evitar qualquer tremor
+            // 6. Mobile: reduzir intensidade do parallax para melhor performance
             if ('ontouchstart' in window) {
+                const mobileParallax = document.querySelectorAll('.parallax-img');
+                mobileParallax.forEach(img => {
+                    img.style.transform = 'translateY(0px)';
+                });
                 const cardsMobile = document.querySelectorAll('.horizontal-move');
                 cardsMobile.forEach(card => {
                     card.style.transition = 'transform 0.2s ease-out';
                 });
-                // desativa parallax intenso no mobile
-                window.addEventListener('scroll', () => {
-                    const parallaxMobile = document.querySelectorAll('.parallax-img');
-                    parallaxMobile.forEach(img => {
-                        img.style.transform = 'translateY(0px)';
-                    });
-                }, { passive: true });
             }
         })();
     </script>
