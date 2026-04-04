@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Frequência Mental Poderosa - Despertar do Rugido | Branco & Movimento</title>
+    <title>Frequência Mental Poderosa - Despertar do Rugido | Cores Originais + Números Ajustados</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <style>
@@ -36,8 +36,8 @@
         .image-box {
             overflow: hidden;
             border-radius: 2rem;
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.08);
-            background-color: #f5f5f0;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.12);
+            background-color: #2D2D2D;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -62,21 +62,31 @@
         }
 
         .glass-tag {
-            background: rgba(0, 0, 0, 0.05);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #1f1f1f;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
+
+        /* NÚMEROS DOS CARDS - CORRIGIDOS para não vazarem */
         .step-number {
-            font-size: 5rem;
-            opacity: 0.1;
+            font-size: 4rem;
+            font-weight: 700;
             font-family: 'Playfair Display', serif;
             position: absolute;
-            top: -1.8rem;
-            left: -0.8rem;
-            font-weight: 600;
+            top: 0.5rem;
+            left: 1rem;
+            opacity: 0.12;
+            line-height: 1;
             pointer-events: none;
-            color: #000;
+            color: currentColor;
+        }
+        /* Em mobile, reduzir ainda mais o tamanho e ajustar posição */
+        @media (max-width: 768px) {
+            .step-number {
+                font-size: 3rem;
+                top: 0.25rem;
+                left: 0.75rem;
+            }
         }
 
         /* Animações e movimentos */
@@ -111,26 +121,20 @@
         .no-x-overflow {
             overflow-x: hidden;
         }
-        /* Ajuste para cards em fundo branco */
-        .card-white {
-            background-color: #ffffff;
-            border: 1px solid #e0e0e0;
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-        }
     </style>
 </head>
 <body class="antialiased no-x-overflow">
 
     <!-- 1. HERO SECTION -->
     <header class="min-h-screen flex items-center px-5 md:px-6 py-12 relative overflow-hidden">
-        <div class="absolute top-20 right-5 w-40 h-40 bg-black/5 rounded-full blur-3xl floating-element pointer-events-none"></div>
+        <div class="absolute top-20 right-5 w-40 h-40 bg-white/10 rounded-full blur-3xl floating-element pointer-events-none"></div>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-7 fade-up">
-                <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-80">Frequência.</div>
+                <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-90">Frequência.</div>
                 <h1 class="text-5xl sm:text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
                     O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
                 </h1>
-                <p class="text-lg md:text-2xl text-humanized opacity-80 max-w-lg">
+                <p class="text-lg md:text-2xl text-humanized opacity-85 max-w-lg">
                     A desmotivação não é ausência de força; é uma frequência desalinhada. Recupere a sua soberania mental hoje.
                 </p>
                 <div class="pt-4">
@@ -145,19 +149,19 @@
         </div>
     </header>
 
-    <!-- 2. EFEITO GOLEM (fundo agora branco) -->
-    <section id="golem" class="px-5 md:px-6 bg-white text-gray-800" data-scroll>
+    <!-- 2. EFEITO GOLEM -->
+    <section id="golem" class="px-5 md:px-6 bg-[#2D2D2D] text-[#D6CFA1]" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2 fade-up shadow-md">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2 fade-up">
                 <img src="./ebook-golem.png" alt="E-book Efeito Golem" class="parallax-img">
             </div>
             <div class="space-y-7 md:order-2 order-1 fade-up">
                 <span class="glass-tag px-5 py-1.5 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full inline-block">Recurso Gratuito</span>
                 <h2 class="text-4xl md:text-7xl font-light serif leading-tight">O Peso Invisível: <br><span class="italic">Efeito Golem</span>.</h2>
-                <p class="text-base md:text-xl text-humanized opacity-75">
+                <p class="text-base md:text-xl text-humanized opacity-85">
                     Descubra como as expectativas alheias esculpiram a sua estagnação. Este guia é o primeiro passo para quebrar o feitiço da mediocridade.
                 </p>
-                <a href="./glm.pdf" download class="inline-flex items-center gap-4 px-8 py-5 bg-black text-white rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-gray-800 transition-all shadow-2xl w-fit">
+                <a href="./glm.pdf" download class="inline-flex items-center gap-4 px-8 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl w-fit">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     Baixar Guia Gratuito (PDF)
                 </a>
@@ -165,7 +169,7 @@
         </div>
     </section>
 
-    <!-- 3. ORIGEM DO CONFLITO (fundo claro original) -->
+    <!-- 3. ORIGEM DO CONFLITO -->
     <section class="px-5 md:px-6 bg-[#E5E0C2]">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="space-y-7 fade-up">
@@ -202,25 +206,25 @@
         </div>
     </section>
 
-    <!-- 5. MÉTODO DOS 3 PILARES (antes fundo escuro, agora branco) -->
-    <section class="px-5 md:px-6 bg-white text-gray-800 overflow-hidden">
+    <!-- 5. MÉTODO DOS 3 PILARES (CORES ORIGINAIS: fundo escuro, números ajustados) -->
+    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1] overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24 fade-up">A Trindade do Despertar</h2>
             <div class="grid md:grid-cols-3 gap-12 md:gap-16">
-                <div class="relative p-8 md:p-10 rounded-3xl card-white horizontal-move stagger-card fade-up" data-horizontal="-12px" style="transition-delay: 0.1s;">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="-12px" style="transition-delay: 0.1s;">
                     <span class="step-number">01</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Purificação</h3>
-                    <p class="opacity-75 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
+                    <p class="opacity-80 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
                 </div>
-                <div class="relative p-8 md:p-10 rounded-3xl card-white horizontal-move stagger-card fade-up" data-horizontal="0px" style="transition-delay: 0.2s;">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="0px" style="transition-delay: 0.2s;">
                     <span class="step-number">02</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Sintonização</h3>
-                    <p class="opacity-75 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
+                    <p class="opacity-80 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
                 </div>
-                <div class="relative p-8 md:p-10 rounded-3xl card-white horizontal-move stagger-card fade-up" data-horizontal="12px" style="transition-delay: 0.3s;">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="12px" style="transition-delay: 0.3s;">
                     <span class="step-number">03</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Manifestação</h3>
-                    <p class="opacity-75 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
+                    <p class="opacity-80 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
                 </div>
             </div>
         </div>
@@ -244,26 +248,26 @@
         </div>
     </section>
 
-    <!-- 7. CHECKOUT FINAL (antes bg-black, agora bg-white) -->
-    <section id="obra" class="px-5 md:px-6 bg-white text-gray-800" data-scroll>
+    <!-- 7. CHECKOUT FINAL (cores originais: fundo preto) -->
+    <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
             <div class="relative md:order-1 order-2 flex justify-center fade-up">
                 <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl floating-element" style="animation-duration: 8s;">
                     <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa">
                 </div>
-                <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-white z-10">
+                <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-black z-10">
                     <span class="text-3xl md:text-4xl font-bold serif leading-none">7</span>
                     <span class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
                 </div>
             </div>
             <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1 fade-up">
                 <h2 class="text-4xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
-                <h3 class="text-xl md:text-2xl serif italic opacity-70 -mt-4">O Despertar do Rugido Interno</h3>
-                <p class="text-base md:text-xl text-humanized opacity-75">
+                <h3 class="text-xl md:text-2xl serif italic opacity-80 -mt-4">O Despertar do Rugido Interno</h3>
+                <p class="text-base md:text-xl text-humanized opacity-80">
                     O mapa definitivo para a sua transmutação pessoal. Saia da apatia e desperte a autoridade natural que sempre esteve aí.
                 </p>
                 <div class="space-y-6">
-                    <button class="w-full py-6 md:py-8 bg-black text-white rounded-full font-bold text-lg md:text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">
+                    <button class="w-full py-6 md:py-8 bg-[#D6CFA1] text-black rounded-full font-bold text-lg md:text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl">
                         Despertar Meu Potencial
                     </button>
                     <p class="text-center text-[9px] md:text-[10px] opacity-50 uppercase tracking-[0.3em]">
@@ -274,7 +278,7 @@
         </div>
     </section>
 
-    <footer class="py-16 md:py-20 px-6 text-center opacity-50 text-gray-600">
+    <footer class="py-16 md:py-20 px-6 text-center opacity-40">
         <div class="max-w-7xl mx-auto text-[10px] md:text-xs uppercase tracking-[0.4em]">
             Frequência © 2026 • O despertar é uma escolha.
         </div>
@@ -362,10 +366,12 @@
                 });
             });
 
-            // Mobile: reduzir parallax
+            // Mobile: reduzir intensidade do parallax
             if ('ontouchstart' in window) {
                 const mobileParallax = document.querySelectorAll('.parallax-img');
                 mobileParallax.forEach(img => img.style.transform = 'translateY(0px)');
+                const mobileCards = document.querySelectorAll('.horizontal-move');
+                mobileCards.forEach(card => card.style.transform = 'translateX(0px)');
             }
         })();
     </script>
