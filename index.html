@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Frequência Mental Poderosa - O Despertar do Rugido</title>
+    <title>Frequência Mental Poderosa - Despertar do Rugido | Movimentos</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
     <style>
-        /* RESET e correção de movimentação horizontal (mobile) */
+        /* RESET + base sem scroll lateral */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html, body {
             overflow-x: hidden;
             width: 100%;
             position: relative;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: #D6CFA1;
@@ -27,29 +25,14 @@
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
-
-        .serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        section {
-            padding-top: 5rem;
-            padding-bottom: 5rem;
-        }
-        
+        .serif { font-family: 'Playfair Display', serif; }
+        section { padding-top: 5rem; padding-bottom: 5rem; }
         @media (min-width: 768px) {
-            section {
-                padding-top: 8rem;
-                padding-bottom: 8rem;
-            }
+            section { padding-top: 8rem; padding-bottom: 8rem; }
         }
+        .text-humanized { line-height: 1.8; letter-spacing: -0.01em; }
 
-        .text-humanized {
-            line-height: 1.8;
-            letter-spacing: -0.01em;
-        }
-
-        /* IMAGE BOXES REFORMULADAS: imagens MAIORES e sem compressão visual */
+        /* IMAGE BOXES (imagens grandes) */
         .image-box {
             overflow: hidden;
             border-radius: 2rem;
@@ -58,42 +41,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Removemos padding excessivo para a imagem ocupar quase toda a janela */
             padding: 0.25rem;
             transition: all 0.2s ease;
+            transform: translateZ(0);
         }
-
-        /* Garantia que a imagem preencha o máximo do espaço disponível, sem distorção */
         .image-box img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
             transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            /* Pequeno refinamento para evitar micro-movimentos em mobile */
             backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
-
-        /* Hover apenas para desktop, sem causar deslocamento horizontal em mobile */
         @media (hover: hover) and (pointer: fine) {
-            .image-box:hover img {
-                transform: scale(1.02);
-            }
+            .image-box:hover img { transform: scale(1.02); }
         }
-
-        /* Ajuste para alturas consistentes e responsivas: imagens sempre proporcionais */
-        .image-box-wrapper {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Prevenção de qualquer overflow causado por elementos rotacionados ou animações */
-        .no-movement {
-            transform: translateZ(0);
-            will-change: auto;
+        @media (max-width: 768px) {
+            .image-box { min-height: 280px; max-height: 440px; }
+            .image-box:hover img { transform: none; }
         }
 
         .glass-tag {
@@ -101,7 +66,6 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.25);
         }
-
         .step-number {
             font-size: 5rem;
             opacity: 0.12;
@@ -113,40 +77,58 @@
             pointer-events: none;
         }
 
-        /* Botões e elementos interativos sem repuxo */
-        button, a {
-            transition: all 0.25s ease;
+        /* ========== ANIMAÇÕES E MOVIMENTOS ========== */
+        /* Elementos que vão entrar com fade + translateY (vertical) */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Correção de rolagem suave e sem tremores */
-        [data-scroll] {
-            scroll-margin-top: 2rem;
+        /* Movimento horizontal sutil para cards (ao rolar, eles se movem lateralmente) */
+        .horizontal-move {
+            transition: transform 0.4s ease-out;
+            will-change: transform;
+        }
+        
+        /* Parallax vertical para imagens dentro das .image-box (efeito mais suave) */
+        .parallax-img {
+            transition: transform 0.1s linear;
+            will-change: transform;
         }
 
-        /* Mobile: evitar que imagens fiquem minúsculas, garantindo altura dinâmica */
-        @media (max-width: 768px) {
-            .image-box {
-                min-height: 320px;
-                max-height: 480px;
-            }
-            .image-box img {
-                object-fit: contain;
-                width: 100%;
-                height: 100%;
-            }
-            /* Remove efeitos de hover que poderiam gerar movimento residual */
-            .image-box:hover img {
-                transform: none;
-            }
+        /* Elemento flutuante no hero (movimento contínuo horizontal/vertical suave) */
+        .floating-element {
+            animation: floatHorizontal 6s ease-in-out infinite;
+        }
+        @keyframes floatHorizontal {
+            0% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(12px) translateY(-8px); }
+            100% { transform: translateX(0px) translateY(0px); }
+        }
+        
+        /* Pequeno movimento nos cards ao fazer scroll (horizontal stagger) */
+        .stagger-card {
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.4, 1);
+        }
+        
+        /* Prevenção de qualquer overflow horizontal por animações */
+        .no-x-overflow {
+            overflow-x: hidden;
         }
     </style>
 </head>
-<body class="antialiased no-movement">
+<body class="antialiased no-x-overflow">
 
-    <!-- 1. HERO SECTION - Leão e Despertar -->
-    <header class="min-h-screen flex items-center px-5 md:px-6 py-12">
+    <!-- 1. HERO SECTION com elemento flutuante e parallax de imagem -->
+    <header class="min-h-screen flex items-center px-5 md:px-6 py-12 relative overflow-hidden">
+        <div class="absolute top-20 right-5 w-40 h-40 bg-white/10 rounded-full blur-3xl floating-element pointer-events-none"></div>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7">
+            <div class="space-y-7 fade-up">
                 <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-90">Frequência.</div>
                 <h1 class="text-5xl sm:text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
                     O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
@@ -160,19 +142,19 @@
                     </a>
                 </div>
             </div>
-            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full">
-                <img src="./hero-leao.jpg" alt="Leão majestoso rugindo em liberdade - força interior" class="drop-shadow-2xl">
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full fade-up" style="transition-delay: 0.15s;">
+                <img src="./hero-leao.jpg" alt="Leão majestoso" class="parallax-img">
             </div>
         </div>
     </header>
 
-    <!-- 2. EFEITO GOLEM - Guia Gratuito -->
+    <!-- 2. EFEITO GOLEM -->
     <section id="golem" class="px-5 md:px-6 bg-[#2D2D2D] text-[#D6CFA1]" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2">
-                <img src="./ebook-golem.png" alt="Capa do E-book Efeito Golem - O Peso Invisível">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2 fade-up">
+                <img src="./ebook-golem.png" alt="E-book Efeito Golem" class="parallax-img">
             </div>
-            <div class="space-y-7 md:order-2 order-1">
+            <div class="space-y-7 md:order-2 order-1 fade-up">
                 <span class="glass-tag px-5 py-1.5 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full inline-block">Recurso Gratuito</span>
                 <h2 class="text-4xl md:text-7xl font-light serif leading-tight">O Peso Invisível: <br><span class="italic">Efeito Golem</span>.</h2>
                 <p class="text-base md:text-xl text-humanized opacity-85">
@@ -186,10 +168,10 @@
         </div>
     </section>
 
-    <!-- 3. A ORIGEM DO CONFLITO (estagnação mental) -->
+    <!-- 3. ORIGEM DO CONFLITO -->
     <section class="px-5 md:px-6 bg-[#E5E0C2]">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7">
+            <div class="space-y-7 fade-up">
                 <h2 class="text-4xl md:text-6xl font-light serif leading-tight">Porquê se sente <br><span class="italic underline decoration-2">estagnado?</span></h2>
                 <p class="text-lg md:text-xl text-humanized opacity-80">
                     Passamos anos a absorver ruído. O ruído do medo, da dúvida e das comparações. Esse ruído cria uma névoa que impede o leão de ver a savana. 
@@ -198,19 +180,19 @@
                     Não se trata de falta de ferramentas. Trata-se de uma bateria interna que está a descarregar em ciclos repetitivos de pensamento negativo.
                 </p>
             </div>
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full">
-                <img src="./origem-conflito.jpg" alt="Representação do conflito mental e da névoa interior">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./origem-conflito.jpg" alt="Conflito mental" class="parallax-img">
             </div>
         </div>
     </section>
 
-    <!-- 4. FILOSOFIA E CONSCIÊNCIA (meditação e introspecção) -->
+    <!-- 4. FILOSOFIA E CONSCIÊNCIA -->
     <section id="filosofia" class="px-5 md:px-6" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full md:order-1 order-2">
-                <img src="./meditacao.png" alt="Pessoa em meditação consciente - introspecção profunda">
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full md:order-1 order-2 fade-up">
+                <img src="./meditacao.png" alt="Meditação consciente" class="parallax-img">
             </div>
-            <div class="space-y-7 md:order-2 order-1">
+            <div class="space-y-7 md:order-2 order-1 fade-up">
                 <span class="text-xs uppercase tracking-[0.3em] opacity-60 block font-semibold">Consciência</span>
                 <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
                 <p class="text-xl md:text-2xl text-humanized text-gray-800 italic font-medium">
@@ -223,22 +205,22 @@
         </div>
     </section>
 
-    <!-- 5. O MÉTODO DOS 3 PILARES (Trindade do Despertar) -->
-    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1]">
+    <!-- 5. MÉTODO DOS 3 PILARES (movimento horizontal nos cards) -->
+    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1] overflow-hidden">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24">A Trindade do Despertar</h2>
+            <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24 fade-up">A Trindade do Despertar</h2>
             <div class="grid md:grid-cols-3 gap-12 md:gap-16">
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="-12px" style="transition-delay: 0.1s;">
                     <span class="step-number">01</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Purificação</h3>
                     <p class="opacity-80 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
                 </div>
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="0px" style="transition-delay: 0.2s;">
                     <span class="step-number">02</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Sintonização</h3>
                     <p class="opacity-80 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
                 </div>
-                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="12px" style="transition-delay: 0.3s;">
                     <span class="step-number">03</span>
                     <h3 class="text-2xl md:text-3xl serif mb-5">Manifestação</h3>
                     <p class="opacity-80 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
@@ -247,10 +229,10 @@
         </div>
     </section>
 
-    <!-- 6. O RUGIDO INTERNO (Transmutação e poder) -->
+    <!-- 6. RUGIDO INTERNO -->
     <section class="px-5 md:px-6">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="space-y-7">
+            <div class="space-y-7 fade-up">
                 <h2 class="text-4xl md:text-6xl font-light serif leading-tight">O Momento da <br><span class="italic font-normal">Transmutação</span>.</h2>
                 <p class="text-lg md:text-xl text-humanized opacity-85">
                     Quando a mente se alinha com o propósito, o medo desaparece. Não porque os problemas sumiram, mas porque você se tornou maior do que eles.
@@ -259,26 +241,25 @@
                     Este não é apenas um curso. É o resgate de uma autoridade que você sempre possuiu, mas que lhe ensinaram a esquecer.
                 </p>
             </div>
-            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full">
-                <img src="./foco-absoluto.png" alt="Foco absoluto e poder interior - transmutação pessoal">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./foco-absoluto.png" alt="Foco e poder" class="parallax-img">
             </div>
         </div>
     </section>
 
-    <!-- 7. CHECKOUT FINAL - OBRA PRINCIPAL -->
+    <!-- 7. CHECKOUT FINAL com efeito de movimento hover/scroll -->
     <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-            <div class="relative md:order-1 order-2 flex justify-center">
-                <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl">
-                    <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa - O Despertar do Rugido Interno">
+            <div class="relative md:order-1 order-2 flex justify-center fade-up">
+                <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl floating-element" style="animation-duration: 8s;">
+                    <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa">
                 </div>
                 <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-black z-10">
                     <span class="text-3xl md:text-4xl font-bold serif leading-none">7</span>
                     <span class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
                 </div>
             </div>
-            
-            <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1">
+            <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1 fade-up">
                 <h2 class="text-4xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
                 <h3 class="text-xl md:text-2xl serif italic opacity-80 -mt-4">O Despertar do Rugido Interno</h3>
                 <p class="text-base md:text-xl text-humanized opacity-80">
@@ -302,30 +283,83 @@
         </div>
     </footer>
 
-    <!-- Script para prevenir qualquer arrasto indesejado ou scroll lateral em elementos específicos -->
     <script>
         (function() {
-            // Garantir que não haja scroll horizontal em qualquer dispositivo
-            const html = document.documentElement;
-            const body = document.body;
-            
-            function fixOverflow() {
-                const maxWidth = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
-                if (maxWidth > window.innerWidth) {
-                    document.body.style.overflowX = 'hidden';
-                    document.documentElement.style.overflowX = 'hidden';
-                } else {
-                    document.body.style.overflowX = 'hidden';
-                    document.documentElement.style.overflowX = 'hidden';
-                }
+            // 1. PREVENIR SCROLL HORIZONTAL
+            function fixHorizontalOverflow() {
+                document.body.style.overflowX = 'hidden';
+                document.documentElement.style.overflowX = 'hidden';
             }
-            
-            // Corrigir qualquer movimento residual ao redimensionar ou tocar
-            window.addEventListener('resize', fixOverflow);
-            window.addEventListener('load', fixOverflow);
-            fixOverflow();
-            
-            // Pequeno ajuste para links âncora suave sem trepidação em mobile
+            window.addEventListener('resize', fixHorizontalOverflow);
+            fixHorizontalOverflow();
+
+            // 2. ANIMAÇÃO DE ENTRADA (FADE-UP) usando Intersection Observer
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // 3. MOVIMENTO HORIZONTAL NOS CARDS (ao rolar, movem-se lateralmente)
+            const horizontalCards = document.querySelectorAll('.horizontal-move');
+            if (horizontalCards.length) {
+                const handleScrollHorizontal = () => {
+                    const scrollY = window.scrollY;
+                    horizontalCards.forEach((card, idx) => {
+                        const rect = card.getBoundingClientRect();
+                        const viewportHeight = window.innerHeight;
+                        const isVisible = rect.top < viewportHeight - 100 && rect.bottom > 100;
+                        if (isVisible) {
+                            const progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+                            // movimento horizontal entre -15px e +15px baseado no scroll + progressão natural
+                            let moveX = 0;
+                            if (card.dataset.horizontal) {
+                                moveX = parseFloat(card.dataset.horizontal) * progress;
+                            } else {
+                                // movimento padrão para cards sem data: oscilação suave baseada no índice
+                                const sign = idx === 0 ? -1 : (idx === 2 ? 1 : 0);
+                                moveX = sign * 12 * progress;
+                            }
+                            card.style.transform = `translateX(${moveX}px)`;
+                        } else {
+                            card.style.transform = `translateX(0px)`;
+                        }
+                    });
+                };
+                window.addEventListener('scroll', handleScrollHorizontal);
+                window.addEventListener('resize', handleScrollHorizontal);
+                handleScrollHorizontal();
+            }
+
+            // 4. PARALLAX VERTICAL NAS IMAGENS (movimento vertical suave ao rolar)
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            if (parallaxImages.length) {
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.scrollY;
+                    parallaxImages.forEach(img => {
+                        // Movimento suave entre -20px e +20px dependendo da posição da imagem
+                        const parentBox = img.closest('.image-box');
+                        if (parentBox) {
+                            const rect = parentBox.getBoundingClientRect();
+                            const viewportCenter = window.innerHeight / 2;
+                            const elementCenter = rect.top + rect.height / 2;
+                            const distanceFromCenter = (elementCenter - viewportCenter) / 30;
+                            const moveY = Math.min(25, Math.max(-25, distanceFromCenter * 0.5));
+                            img.style.transform = `translateY(${moveY * 0.4}px)`;
+                        } else {
+                            const moveY = scrolled * 0.05;
+                            img.style.transform = `translateY(${moveY * 0.2}px)`;
+                        }
+                    });
+                });
+            }
+
+            // 5. LINK SUAVE (âncora)
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
@@ -334,23 +368,26 @@
                     if (targetElement) {
                         e.preventDefault();
                         const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 20;
-                        window.scrollTo({
-                            top: offsetTop,
-                            behavior: 'smooth'
-                        });
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
                     }
                 });
             });
-            
-            // Prevenir qualquer movimento de layout causado por transformações em imagens em mobile
+
+            // 6. Para mobile: reduzir intensidade de movimentos e evitar qualquer tremor
             if ('ontouchstart' in window) {
-                const allImageBoxes = document.querySelectorAll('.image-box');
-                allImageBoxes.forEach(box => {
-                    box.style.transform = 'translateZ(0)';
-                    box.style.webkitTransform = 'translateZ(0)';
+                const cardsMobile = document.querySelectorAll('.horizontal-move');
+                cardsMobile.forEach(card => {
+                    card.style.transition = 'transform 0.2s ease-out';
                 });
+                // desativa parallax intenso no mobile
+                window.addEventListener('scroll', () => {
+                    const parallaxMobile = document.querySelectorAll('.parallax-img');
+                    parallaxMobile.forEach(img => {
+                        img.style.transform = 'translateY(0px)';
+                    });
+                }, { passive: true });
             }
         })();
     </script>
 </body>
-                  </html>
+</html>
