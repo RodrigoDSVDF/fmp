@@ -9,14 +9,13 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #D6CFA1; /* Tom areia extraído da sua imagem */
+            background-color: #D6CFA1;
             color: #1F1F1F;
             scroll-behavior: smooth;
         }
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* Aumentando o respiro das seções */
-        section { padding-top: 10rem; padding-bottom: 10rem; }
+        section { padding-top: 12rem; padding-bottom: 12rem; }
         
         .text-humanized {
             line-height: 1.9;
@@ -26,10 +25,11 @@
             overflow: hidden;
             border-radius: 2rem;
             box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-            background-color: #C5BC8E; /* Cor de fundo sólida caso a imagem falhe */
+            background-color: #C5BC8E;
             display: flex;
             align-items: center;
             justify-content: center;
+            min-height: 450px;
         }
         .image-box img {
             width: 100%;
@@ -45,30 +45,29 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
+
+        .step-number {
+            font-size: 5rem;
+            opacity: 0.1;
+            font-family: 'Playfair Display', serif;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter serif italic">Frequência.</div>
-        <div class="hidden md:flex gap-12 text-[10px] uppercase tracking-[0.3em] font-medium opacity-60">
-            <a href="#golem" class="hover:opacity-100 transition">O Bloqueio</a>
-            <a href="#filosofia" class="hover:opacity-100 transition">A Filosofia</a>
-            <a href="#obra" class="hover:opacity-100 transition">A Obra</a>
-        </div>
-        <a href="#comprar" class="px-8 py-3 bg-black text-white rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-gray-900 transition-all">
-            Adquirir Obra
-        </a>
-    </nav>
-
-    <header class="min-h-[90vh] flex items-center px-6">
+    <!-- 1. HERO SECTION -->
+    <header class="min-h-screen flex items-center px-6">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="space-y-8">
+                <div class="text-2xl font-bold tracking-tighter serif italic mb-12">Frequência.</div>
                 <h1 class="text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
                     O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
                 </h1>
                 <p class="text-xl md:text-2xl text-humanized opacity-80 max-w-lg">
-                    A desmotivação não é ausência de força; é uma frequência desalinhada com a sua essência. É hora de retornar à sua natureza soberana.
+                    A desmotivação não é ausência de força; é uma frequência desalinhada. Recupere a sua soberania mental hoje.
                 </p>
                 <div class="pt-4">
                     <a href="#golem" class="inline-block bg-black text-white px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
@@ -76,17 +75,17 @@
                     </a>
                 </div>
             </div>
-            <div class="image-box h-[650px]">
-                <!-- Referência direta ao ficheiro que está na mesma pasta no GitHub -->
-                <img src="hero-leao.jpg" alt="A força do rugido interior">
+            <div class="image-box h-[700px]">
+                <img src="./hero-leao.jpg" alt="[Imagem de um leão majestoso]">
             </div>
         </div>
     </header>
 
+    <!-- 2. EFEITO GOLEM -->
     <section id="golem" class="px-6 bg-[#2D2D2D] text-[#D6CFA1]">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="image-box h-[550px] md:order-1 order-2">
-                <img src="ebook-golem.jpg" alt="E-book gratuito sobre o Efeito Golem">
+                <img src="./ebook-golem.jpg" alt="[Imagem da capa do e-book Efeito Golem]">
             </div>
             <div class="space-y-8 md:order-2 order-1">
                 <span class="glass-tag px-4 py-1 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full">Recurso Gratuito</span>
@@ -94,7 +93,7 @@
                 <p class="text-lg md:text-xl text-humanized opacity-80">
                     Descubra como as expectativas alheias esculpiram a sua estagnação. Este guia é o primeiro passo para quebrar o feitiço da mediocridade.
                 </p>
-                <a href="glm.pdf" download class="inline-flex items-center gap-4 px-10 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl">
+                <a href="./glm.pdf" download class="inline-flex items-center gap-4 px-10 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                     Baixar Guia Gratuito (PDF)
                 </a>
@@ -102,31 +101,95 @@
         </div>
     </section>
 
-    <section id="filosofia" class="px-6">
+    <!-- 3. A ORIGEM DO CONFLITO (NOVA SEÇÃO) -->
+    <section class="px-6 bg-[#E5E0C2]">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="space-y-8">
-                <span class="text-xs uppercase tracking-[0.3em] opacity-50 block">Consciência</span>
-                <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
-                <p class="text-xl text-humanized text-gray-700 italic">
-                    "O desânimo é o grito de uma alma que possui um potencial maior do que a rotina que a aprisiona. A transmutação começa quando você decide parar de lutar contra o espelho e começa a ajustar a fonte."
+                <h2 class="text-5xl font-light serif leading-tight">Porquê se sente <br><span class="italic underline">estagnado?</span></h2>
+                <p class="text-xl text-humanized opacity-80">
+                    Passamos anos a absorver ruído. O ruído do medo, da dúvida e das comparações. Esse ruído cria uma névoa que impede o leão de ver a savana. 
+                </p>
+                <p class="text-lg text-humanized opacity-70">
+                    Não se trata de falta de ferramentas. Trata-se de uma bateria interna que está a descarregar em ciclos repetitivos de pensamento negativo.
                 </p>
             </div>
-            <div class="image-box h-[600px]">
-                <img src="meditacao.png" alt="A quietude da mente poderosa">
+            <div class="image-box h-[500px]">
+                <img src="./origem-conflito.jpg" alt="[Imagem representativa do conflito mental]">
             </div>
         </div>
     </section>
 
+    <!-- 4. FILOSOFIA E CONSCIÊNCIA -->
+    <section id="filosofia" class="px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="image-box h-[600px] md:order-1 order-2">
+                <img src="./meditacao.png" alt="[Imagem de meditação consciente]">
+            </div>
+            <div class="space-y-8 md:order-2 order-1">
+                <span class="text-xs uppercase tracking-[0.3em] opacity-50 block">Consciência</span>
+                <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
+                <p class="text-xl text-humanized text-gray-700 italic">
+                    "O desânimo é o grito de uma alma que possui um potencial maior do que a rotina que a aprisiona."
+                </p>
+                <p class="text-lg text-humanized opacity-80">
+                    A meditação e a introspecção não são fugas da realidade, são os treinos necessários para dominar o território da própria mente.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. O MÉTODO DOS 3 PILARES (NOVA SEÇÃO) -->
+    <section class="px-6 bg-[#1F1F1F] text-[#D6CFA1]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl serif italic text-center mb-24">A Trindade do Despertar</h2>
+            <div class="grid md:grid-cols-3 gap-16">
+                <div class="relative p-10 border border-[#D6CFA1]/20 rounded-3xl">
+                    <span class="step-number">01</span>
+                    <h3 class="text-2xl serif mb-6">Purificação</h3>
+                    <p class="opacity-70 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
+                </div>
+                <div class="relative p-10 border border-[#D6CFA1]/20 rounded-3xl">
+                    <span class="step-number">02</span>
+                    <h3 class="text-2xl serif mb-6">Sintonização</h3>
+                    <p class="opacity-70 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
+                </div>
+                <div class="relative p-10 border border-[#D6CFA1]/20 rounded-3xl">
+                    <span class="step-number">03</span>
+                    <h3 class="text-2xl serif mb-6">Manifestação</h3>
+                    <p class="opacity-70 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. O RUGIDO INTERNO (NOVA SEÇÃO) -->
+    <section class="px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+            <div class="space-y-8">
+                <h2 class="text-5xl font-light serif leading-tight">O Momento da <br><span class="italic font-normal">Transmutação</span>.</h2>
+                <p class="text-xl text-humanized opacity-80">
+                    Quando a mente se alinha com o propósito, o medo desaparece. Não porque os problemas sumiram, mas porque você se tornou maior do que eles.
+                </p>
+                <p class="text-lg text-humanized opacity-70">
+                    Este não é apenas um curso. É o resgate de uma autoridade que você sempre possuiu, mas que lhe ensinaram a esquecer.
+                </p>
+            </div>
+            <div class="image-box h-[500px]">
+                <img src="./foco-absoluto.jpg" alt="[Imagem representativa de foco e poder]">
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CHECKOUT FINAL -->
     <section id="obra" class="px-6 bg-black text-[#D6CFA1]">
         <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
             <div class="relative md:order-1 order-2">
                 <div class="image-box h-[650px] transform -rotate-2">
-                    <img src="mockup-principal.png" alt="E-book Frequência Mental Poderosa">
+                    <img src="./mockup-principal.png" alt="[Imagem do e-book Frequência Mental Poderosa]">
                 </div>
                 <div class="absolute -bottom-10 -right-6 bg-[#D6CFA1] text-black w-36 h-36 rounded-full flex flex-col items-center justify-center p-4 shadow-2xl border-8 border-black z-10 scale-110">
                     <span class="text-3xl font-bold serif leading-none">7</span>
                     <span class="text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
-                    <svg class="w-6 h-6 mt-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 4.925-3.046 9.14-7.364 10.846L10 18l-.636-.253C5.045 16.04 2 11.825 2 7c0-.681.056-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                 </div>
             </div>
             
@@ -149,9 +212,8 @@
     </section>
 
     <footer class="py-20 px-8 text-center opacity-30">
-        <div class="max-w-7xl mx-auto">
-            <div class="serif italic text-3xl mb-8">Frequência.</div>
-            <p class="text-[10px] uppercase tracking-[0.5em]">O despertar é uma escolha. Escolha agora.</p>
+        <div class="max-w-7xl mx-auto text-xs uppercase tracking-[0.5em]">
+            Frequência © 2026 • O despertar é uma escolha.
         </div>
     </footer>
 
