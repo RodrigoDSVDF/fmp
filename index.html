@@ -26,13 +26,17 @@
             overflow: hidden;
             border-radius: 2rem;
             box-shadow: 0 30px 60px rgba(0,0,0,0.12);
-            background-color: rgba(0,0,0,0.03); /* Placeholder enquanto carrega */
+            background-color: #C5BC8E; /* Cor de fundo sólida caso a imagem falhe */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 1.5s ease;
+            display: block;
         }
         .image-box:hover img { transform: scale(1.03); }
 
@@ -73,6 +77,7 @@
                 </div>
             </div>
             <div class="image-box h-[650px]">
+                <!-- Referência direta ao ficheiro que está na mesma pasta no GitHub -->
                 <img src="hero-leao.jpg" alt="A força do rugido interior">
             </div>
         </div>
@@ -127,6 +132,7 @@
             
             <div id="comprar" class="space-y-10 md:order-2 order-1">
                 <h2 class="text-5xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
+                <h3 class="text-2xl serif italic opacity-80 -mt-6">O Despertar do Rugido Interno</h3>
                 <p class="text-xl text-humanized opacity-70">
                     O mapa definitivo para a sua transmutação pessoal. Saia da apatia e desperte a autoridade natural que sempre esteve aí.
                 </p>
