@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Frequência Mental Poderosa - O Despertar do Rugido | Movimentos na Imagem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET + sem scroll lateral */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #D6CFA1;
+            color: #1F1F1F;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Playfair Display', serif; }
+        section { padding-top: 5rem; padding-bottom: 5rem; }
+        @media (min-width: 768px) {
+            section { padding-top: 8rem; padding-bottom: 8rem; }
+        }
+        .text-humanized { line-height: 1.8; letter-spacing: -0.01em; }
+
+        /* IMAGE BOXES: imagens cobrem 100% + movimento aprimorado */
+        .image-box {
+            overflow: hidden;
+            border-radius: 2rem;
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.12);
+            background-color: #2D2D2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: all 0.2s ease;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 1.2s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            backface-visibility: hidden;
+            will-change: transform;
+        }
+        /* Efeito hover com zoom sutil + movimento */
+        @media (hover: hover) and (pointer: fine) {
+            .image-box:hover img { transform: scale(1.03) translateY(-2px); }
+        }
+        @media (max-width: 768px) {
+            .image-box { min-height: 280px; max-height: 440px; }
+            .image-box:hover img { transform: none; }
+        }
+
+        .glass-tag {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        /* NÚMEROS DOS CARDS - AJUSTADOS: subidos para não sobrepor texto */
+        .step-number {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
+            position: absolute;
+            top: -0.8rem;
+            left: 1rem;
+            opacity: 0.12;
+            line-height: 1;
+            pointer-events: none;
+            color: currentColor;
+        }
+        @media (max-width: 768px) {
+            .step-number {
+                font-size: 3rem;
+                top: -0.5rem;
+                left: 0.75rem;
+            }
+        }
+
+        /* Animações e movimentos principais */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Movimentos horizontais nos cards */
+        .horizontal-move {
+            transition: transform 0.4s ease-out;
+            will-change: transform;
+        }
+        
+        /* Parallax vertical para imagens: movimento vertical suave baseado no scroll */
+        .parallax-img {
+            transition: transform 0.1s linear;
+            will-change: transform;
+        }
+        
+        /* Movimento flutuante horizontal + vertical sutil para imagens destacadas (floating) */
+        .floating-element {
+            animation: floatDiagonal 6s ease-in-out infinite;
+        }
+        
+        @keyframes floatDiagonal {
+            0% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(10px) translateY(-8px); }
+            100% { transform: translateX(0px) translateY(0px); }
+        }
+        
+        /* Efeito de movimento orbital suave para elementos específicos */
+        .gentle-sway {
+            animation: swayMove 7s infinite alternate ease-in-out;
+        }
+        
+        @keyframes swayMove {
+            0% { transform: translateX(-6px) translateY(2px); }
+            100% { transform: translateX(6px) translateY(-3px); }
+        }
+        
+        .stagger-card {
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.4, 1);
+        }
+        .no-x-overflow {
+            overflow-x: hidden;
+        }
+
+        /* BOTÃO CENTRAL E CITAÇÃO EM MOBILE */
+        .chaos-button-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            width: 100%;
+        }
+        .chaos-button {
+            background-color: #1F1F1F;
+            color: #D6CFA1;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            border: 1px solid rgba(214,207,161,0.3);
+            width: auto;
+            min-width: 240px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+        }
+        .chaos-button:hover {
+            background-color: #D6CFA1;
+            color: #1F1F1F;
+            transform: scale(1.03);
+            border-color: #1F1F1F;
+        }
+        .chaos-quote {
+            margin-top: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #2D2D2D;
+            max-width: 320px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            padding: 0 1rem;
+        }
+        .chaos-author {
+            font-size: 0.75rem;
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            letter-spacing: 0.05em;
+            opacity: 0.7;
+            margin-top: 0.25rem;
+        }
+        @media (min-width: 768px) {
+            .chaos-button-wrapper {
+                display: none;
+            }
+        }
+        @media (max-width: 480px) {
+            .chaos-button {
+                font-size: 0.85rem;
+                padding: 0.85rem 1.5rem;
+                min-width: 220px;
+            }
+            .chaos-quote {
+                font-size: 0.9rem;
+                max-width: 280px;
+            }
+        }
+        
+        .btn-link {
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+        
+        /* Adiciona movimento sutil horizontal/vertical em imagens específicas (não todas, para harmonia) */
+        .dynamic-img-hover {
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.4, 1);
+        }
+        .dynamic-img-hover:hover {
+            transform: translate(4px, -4px) scale(1.01);
+        }
+    </style>
+</head>
+<body class="antialiased no-x-overflow">
+
+    <!-- BOTÃO CENTRAL MOBILE COM CITAÇÃO -->
+    <div class="chaos-button-wrapper">
+        <a href="https://pay.cakto.com.br/8yozpec_836500" target="_blank" rel="noopener noreferrer" class="chaos-button" id="mobileChaosBtn">
+            O DESPERTAR
+        </a>
+        <div class="chaos-quote">
+            "É necessário o caos dentro de si para que surja uma estrela dançante"
+            <div class="chaos-author">— Nietzsche</div>
+        </div>
+    </div>
+
+    <!-- 1. HERO SECTION - movimento vertical/horizontal nas imagens (parallax + flutuação suave) -->
+    <header class="min-h-screen flex items-center px-5 md:px-6 py-12 relative overflow-hidden">
+        <div class="absolute top-20 right-5 w-40 h-40 bg-white/10 rounded-full blur-3xl floating-element pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7 fade-up">
+                <div class="text-2xl md:text-3xl font-bold tracking-tighter serif italic opacity-90">Frequência Mental.</div>
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-light serif leading-[1.1] tracking-tight">
+                    O silêncio que precede o seu <span class="italic font-normal">rugido</span>.
+                </h1>
+                <p class="text-lg md:text-2xl text-humanized opacity-85 max-w-lg">
+                    A desmotivação não é ausência de força; é uma frequência que está desalinhada. Recupere a sua potência mental hoje.
+                </p>
+                <div class="pt-4">
+                    <a href="https://pay.cakto.com.br/8yozpec_836500" target="_blank" rel="noopener noreferrer" class="inline-block bg-black text-white px-10 md:px-12 py-5 rounded-full text-sm font-bold uppercase tracking-widest hover:scale-105 transition-all shadow-xl btn-link">
+                        Assumir o controle
+                    </a>
+                </div>
+            </div>
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full fade-up relative" style="transition-delay: 0.15s;">
+                <!-- Imagem com movimentos: parallax vertical + leve flutuação horizontal suave durante scroll -->
+                <img src="./hero-leao.jpg" alt="Leão majestoso" class="parallax-img gentle-sway" style="animation-duration: 8s;">
+            </div>
+        </div>
+    </header>
+
+    <!-- 2. EFEITO GOLEM - imagem com movimento vertical e horizontal integrado -->
+    <section id="golem" class="px-5 md:px-6 bg-[#2D2D2D] text-[#D6CFA1]" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[550px] w-full md:order-1 order-2 fade-up overflow-hidden">
+                <img src="./ebook-golem.png" alt="E-book Efeito Golem" class="parallax-img dynamic-img-hover" style="transition: transform 0.3s ease-out;">
+            </div>
+            <div class="space-y-7 md:order-2 order-1 fade-up">
+                <span class="glass-tag px-5 py-1.5 text-[10px] font-bold tracking-[0.3em] uppercase rounded-full inline-block">Recurso Gratuito</span>
+                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">O Peso Invisível: <br><span class="italic">Efeito Golem</span>.</h2>
+                <p class="text-base md:text-xl text-humanized opacity-85">
+                    Descubra como as expectativas dos outros moldaram seus limites. Este guia é o primeiro passo para quebrar esse padrão.
+                </p>
+                <a href="./glm.pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-4 px-8 py-5 bg-[#D6CFA1] text-black rounded-xl font-bold uppercase tracking-widest text-sm hover:bg-white transition-all shadow-2xl w-fit">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                    Baixar Guia Gratuito (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. PORQUÊ SE SENTE ESTAGNADO? -->
+    <section class="px-5 md:px-6 bg-[#E5E0C2]">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7 fade-up">
+                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">Está cansado de sentir-se desmotivado <br><span class="italic underline decoration-2">e sem propósito na vida?</span></h2>
+                <div class="text-base md:text-lg text-humanized opacity-90 space-y-4">
+                    <p>Você não está sozinho. Muitas pessoas lutam com esses sentimentos todos os dias, mas a boa notícia é que você não precisa mais enfrentá-los sozinho.</p>
+                    <p>Com o e-book <span class="font-semibold">"Frequência Mental Poderosa"</span>, você finalmente terá as ferramentas necessárias para superar esse ciclo de desmotivação e encontrar um propósito significativo em sua vida.</p>
+                    <p>Ao mergulhar nas páginas deste livro, você descobrirá estratégias e práticas para reprogramar sua mente, cultivar uma mentalidade positiva e desenvolver hábitos que o levarão ao sucesso duradouro.</p>
+                </div>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./origem-conflito.jpg" alt="Superação da desmotivação" class="parallax-img" style="transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.4, 1);">
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. FILOSOFIA E CONSCIÊNCIA - imagem com movimento diagonal sutil -->
+    <section id="filosofia" class="px-5 md:px-6" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="image-box h-[420px] sm:h-[480px] md:h-[600px] w-full md:order-1 order-2 fade-up overflow-hidden">
+                <img src="./meditacao.png" alt="Meditação consciente" class="parallax-img floating-element" style="animation-duration: 7s;">
+            </div>
+            <div class="space-y-7 md:order-2 order-1 fade-up">
+                <span class="text-xs uppercase tracking-[0.3em] opacity-60 block font-semibold">Consciência</span>
+                <h2 class="text-4xl md:text-6xl font-light serif leading-snug">Você não nasceu para apenas <span class="italic underline decoration-1">suportar</span> o dia.</h2>
+                <p class="text-xl md:text-2xl text-humanized text-gray-700 italic font-medium">
+                    "O desânimo é o grito de uma alma que possui um potencial maior do que a rotina que a aprisiona."
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-80">
+                   Imagine acordar todas as manhãs com uma sensação renovada de energia e entusiasmo. Imagine enfrentar cada dia com uma clareza de propósito que o impulsiona em direção aos seus sonhos mais profundos. Isso não é apenas um sonho distante - é uma realidade ao seu alcance.
+                </p>
+                <p>Deixe para trás a sensação de desânimo e falta de direção. Em vez disso, embarque em uma jornada de autodescoberta e crescimento pessoal que o capacitará a alcançar todo o seu potencial.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. MÉTODO DOS 3 PILARES (cards com movimento horizontal) -->
+    <section class="px-5 md:px-6 bg-[#1F1F1F] text-[#D6CFA1] overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl md:text-6xl serif italic text-center mb-16 md:mb-24 fade-up">A Trindade do Despertar</h2>
+            <div class="grid md:grid-cols-3 gap-12 md:gap-16">
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="-14px" style="transition-delay: 0.1s;">
+                    <span class="step-number">01</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Purificação</h3>
+                    <p class="opacity-80 leading-relaxed">Elimine os parasitas mentais e o Efeito Golem que têm drenado a sua energia vital durante anos.</p>
+                </div>
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="0px" style="transition-delay: 0.2s;">
+                    <span class="step-number">02</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Sintonização</h3>
+                    <p class="opacity-80 leading-relaxed">Ajuste a sua frequência vibracional para o modo "Criador" em vez do modo "Espectador".</p>
+                </div>
+                <div class="relative p-8 md:p-10 border border-[#D6CFA1]/20 rounded-3xl bg-[#2a2a2a]/40 horizontal-move stagger-card fade-up" data-horizontal="14px" style="transition-delay: 0.3s;">
+                    <span class="step-number">03</span>
+                    <h3 class="text-2xl md:text-3xl serif mb-5">Manifestação</h3>
+                    <p class="opacity-80 leading-relaxed">Transforme a clareza mental em resultados tangíveis no mundo físico, com a força de um rugido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. RUGIDO INTERNO / O MOMENTO DA TRANSMUTAÇÃO -->
+    <section class="px-5 md:px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7 fade-up">
+                <h2 class="text-4xl md:text-6xl font-light serif leading-tight">O Momento da <br><span class="italic font-normal">Transmutação</span>.</h2>
+                <p class="text-lg md:text-xl text-humanized opacity-85">
+                    Quando a mente se alinha com o propósito, o medo desaparece. Não porque os problemas sumiram, mas porque você se tornou maior do que eles.
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-75">
+                    Este não é apenas um e-book. É o resgate de uma autoridade que você sempre possuiu, mas que lhe ensinaram a esquecer, e como dizia os gregos precisa ser rememorada.
+                </p>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./foco-absoluto.png" alt="Foco e poder" class="parallax-img gentle-sway" style="animation-duration: 9s;">
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. VAMOS JUNTOS NESSA JORNADA -->
+    <section class="px-5 md:px-6 bg-[#E5E0C2]">
+        <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16 fade-up">
+            <h2 class="text-3xl md:text-5xl font-light serif italic">Vamos Juntos nessa jornada de transformação</h2>
+        </div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7 fade-up">
+                <p class="text-base md:text-xl text-humanized opacity-85 leading-relaxed">
+                    A caminhada solitária muitas vezes é a mais difícil. Mas você não precisa mais carregar esse fardo sozinho. Ao seu lado, há uma comunidade de pessoas que, assim como você, decidiram romper as correntes da desmotivação e abraçar uma vida com propósito e significado.
+                </p>
+                <p class="text-base md:text-xl text-humanized opacity-85 leading-relaxed">
+                    Cada passo dado em direção à sua transformação ecoa em todos que compartilham desse mesmo ideal. Juntos, somos mais fortes. Juntos, despertamos o rugido que há dentro de cada um de nós.
+                </p>
+                <p class="text-base md:text-xl text-humanized opacity-85 leading-relaxed font-medium italic">
+                    Não espere mais. O momento de agir é agora, e você não está sozinho nesta jornada.
+                </p>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./juntos.png" alt="Juntos nessa jornada" class="parallax-img floating-element" style="animation-duration: 7.5s;">
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. TEXTO E IMAGEM COM MOVIMENTO SUTIL -->
+    <section class="px-5 md:px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="space-y-7 fade-up">
+                <p class="text-xl md:text-2xl text-humanized leading-relaxed font-medium">
+                    Imagine acordar todas as manhãs com uma sensação renovada de energia e entusiasmo. Imagine enfrentar cada dia com uma clareza de propósito que o impulsiona em direção aos seus sonhos mais profundos. Isso não é apenas um sonho distante - é uma realidade ao seu alcance.
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-80">
+                    A transformação que você tanto busca não está em um futuro distante ou em circunstâncias externas que você não controla. Ela começa dentro de você, na decisão silenciosa de hoje de dizer "chega" à apatia e "sim" à sua própria grandeza.
+                </p>
+                <p class="text-base md:text-lg text-humanized opacity-80">
+                    Cada pensamento que você cultiva, cada hábito que você constrói, cada pequena vitória que você celebra - tudo isso são degraus na escada que leva à versão mais poderosa de si mesmo.
+                </p>
+            </div>
+            <div class="image-box h-[380px] sm:h-[450px] md:h-[520px] w-full fade-up">
+                <img src="./feliz.png" alt="Felicidade e realização" class="parallax-img dynamic-img-hover">
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. CHECKOUT FINAL - mockup com movimento flutuante horizontal/vertical intensificado -->
+    <section id="obra" class="px-5 md:px-6 bg-black text-[#D6CFA1]" data-scroll>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+            <div class="relative md:order-1 order-2 flex justify-center fade-up">
+                <div class="image-box h-[420px] sm:h-[520px] md:h-[650px] w-full transform -rotate-1 shadow-2xl floating-element" style="animation-duration: 8s;">
+                    <img src="./mockup-principal.png" alt="E-book Frequência Mental Poderosa" class="parallax-img">
+                </div>
+                <div class="absolute -bottom-8 -right-4 md:-bottom-10 md:-right-6 bg-[#D6CFA1] text-black w-32 h-32 md:w-36 md:h-36 rounded-full flex flex-col items-center justify-center shadow-2xl border-4 md:border-8 border-black z-10">
+                    <span class="text-3xl md:text-4xl font-bold serif leading-none">7</span>
+                    <span class="text-[8px] md:text-[9px] uppercase font-bold tracking-widest text-center mt-1">Dias de <br> Garantia</span>
+                </div>
+            </div>
+            <div id="comprar" class="space-y-8 md:space-y-10 md:order-2 order-1 fade-up">
+                <h2 class="text-4xl md:text-7xl font-light serif leading-tight">Frequência Mental Poderosa.</h2>
+                <h3 class="text-xl md:text-2xl serif italic opacity-80 -mt-4">O Despertar do Rugido Interno</h3>
+                <p class="text-base md:text-xl text-humanized opacity-80">
+                    O mapa definitivo para a sua transformação pessoal. Saia da apatia e desperte a autoridade natural que sempre esteve aí.
+                </p>
+                <div class="space-y-6">
+                    <a href="https://pay.cakto.com.br/8yozpec_836500" target="_blank" rel="noopener noreferrer" class="w-full py-6 md:py-8 bg-[#D6CFA1] text-black rounded-full font-bold text-lg md:text-xl uppercase tracking-widest hover:scale-105 transition-all shadow-2xl text-center btn-block btn-link">
+                        Despertar Meu Potencial
+                    </a>
+                    <p class="text-center text-[9px] md:text-[10px] opacity-50 uppercase tracking-[0.3em]">
+                        Risco Zero • Acesso Vitalício • Purificação Mental
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-16 md:py-20 px-6 text-center opacity-40">
+        <div class="max-w-7xl mx-auto text-[10px] md:text-xs uppercase tracking-[0.4em]">
+            Frequência © 2026 • O despertar é uma escolha.
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // Prevenir scroll horizontal
+            function fixHorizontalOverflow() {
+                document.body.style.overflowX = 'hidden';
+                document.documentElement.style.overflowX = 'hidden';
+            }
+            window.addEventListener('resize', fixHorizontalOverflow);
+            fixHorizontalOverflow();
+
+            // Intersection Observer para fade-up
+            const fadeElements = document.querySelectorAll('.fade-up');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Movimento horizontal nos cards (efeito lateral)
+            const horizontalCards = document.querySelectorAll('.horizontal-move');
+            if (horizontalCards.length) {
+                const handleScrollHorizontal = () => {
+                    horizontalCards.forEach((card, idx) => {
+                        const rect = card.getBoundingClientRect();
+                        const viewportHeight = window.innerHeight;
+                        const isVisible = rect.top < viewportHeight - 100 && rect.bottom > 100;
+                        if (isVisible) {
+                            let progress = Math.min(1, Math.max(0, (viewportHeight - rect.top) / (viewportHeight + rect.height)));
+                            let moveX = 0;
+                            if (card.dataset.horizontal) {
+                                moveX = parseFloat(card.dataset.horizontal) * progress;
+                            } else {
+                                const sign = idx === 0 ? -1 : (idx === 2 ? 1 : 0);
+                                moveX = sign * 12 * progress;
+                            }
+                            card.style.transform = `translateX(${moveX}px)`;
+                        } else {
+                            card.style.transform = `translateX(0px)`;
+                        }
+                    });
+                };
+                window.addEventListener('scroll', handleScrollHorizontal);
+                window.addEventListener('resize', handleScrollHorizontal);
+                handleScrollHorizontal();
+            }
+
+            // Parallax vertical + movimento horizontal sutil integrado ao scroll
+            const parallaxImages = document.querySelectorAll('.parallax-img');
+            if (parallaxImages.length) {
+                window.addEventListener('scroll', () => {
+                    parallaxImages.forEach(img => {
+                        const parentBox = img.closest('.image-box');
+                        if (parentBox) {
+                            const rect = parentBox.getBoundingClientRect();
+                            const viewportCenter = window.innerHeight / 2;
+                            const elementCenter = rect.top + rect.height / 2;
+                            const distanceFromCenter = (elementCenter - viewportCenter) / 35;
+                            // movimento vertical principal
+                            let moveY = Math.min(22, Math.max(-22, distanceFromCenter * 0.6));
+                            // movimento horizontal sutil baseado na posição do mouse? mantemos leveza: 1px adicional dinâmico
+                            let moveX = Math.sin(Date.now() / 3000) * 1.2;
+                            if (window.innerWidth > 768) {
+                                // leve movimento suave flutuante extra horizontal
+                                img.style.transform = `translateY(${moveY}px) translateX(${moveX}px)`;
+                            } else {
+                                img.style.transform = `translateY(${moveY * 0.5}px)`;
+                            }
+                        }
+                    });
+                });
+                // trigger inicial
+                window.dispatchEvent(new Event('scroll'));
+            }
+
+            // Âncoras suaves
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === "#" || targetId === "") return;
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY - 20;
+                        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+                    }
+                });
+            });
+
+            // Reduzir intensidade de movimento em dispositivos touch (mobile)
+            if ('ontouchstart' in window) {
+                const mobileParallax = document.querySelectorAll('.parallax-img');
+                mobileParallax.forEach(img => {
+                    img.style.transform = 'translateY(0px)';
+                    img.classList.remove('gentle-sway', 'floating-element');
+                });
+                const mobileCards = document.querySelectorAll('.horizontal-move');
+                mobileCards.forEach(card => card.style.transform = 'translateX(0px)');
+            }
+        })();
+    </script>
+</body>
+</html>
